@@ -4,7 +4,7 @@ export default function Index(props: any) {
   const { allDatas } = props;
   return (
     <div>
-      <div className="headerbar">
+      {/* <div className="headerbar">
         <style jsx>{`
           .headerbar {
             background-color: #1742e1;
@@ -42,7 +42,7 @@ export default function Index(props: any) {
             </div>
           </div>
         </div>
-      </div>
+      </div>*/}
       <div className="main">
         <style jsx>{`
           .blog {
