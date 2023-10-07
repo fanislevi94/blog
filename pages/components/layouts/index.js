@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 export default function Index(props) {
   const { items } = props;
   return (
@@ -35,6 +36,9 @@ export default function Index(props) {
           padding-right: 15px;
           background-color: #7243ff;
         }
+        .my-link:hover {
+          color: blue;
+        }
       `}</style>
       <div className="flex flex-wrap flex justify-center items-center gap-20 pt-20">
         {items.map((data) => (
@@ -49,9 +53,11 @@ export default function Index(props) {
             </div>
             <div className="over-image">Our news</div>
             <div className="area-field pt-5 pl-5">12 October 2023</div>
-            <div className="area-field-header pl-5">
-              Papaki had a dynamic presence at the eCommerce & Digital Marketing
-              Expo 2023
+            <div className="area-field-header pl-5 my-link">
+              <Link href="/details">
+                Papaki had a dynamic presence at the eCommerce & Digital
+                Marketing Expo 2023
+              </Link>
             </div>
             <div className="area-field-detail pl-5 pt-2">
               Papaki, supporting the eCommerce and business community, was
