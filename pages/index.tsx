@@ -1,7 +1,30 @@
 import Image from "next/image";
 import IndexFunction from "./components/layouts/index";
+import api from "./components/services/api";
+import { useRouter } from "next/router";
+var glob: any = null;
 export default function Index(props: any) {
   const { allDatas } = props;
+
+  const router = useRouter();
+  function text(name: any) {
+    // alert(`hello, ${name}`);
+    if (name === "ournews") {
+      router.push("/?name=ournews");
+    } else if (name === "domains") {
+      router.push("/?name=domains");
+    } else if (name === "wordpress") {
+      router.push("/?name=wordpress");
+    } else if (name === "ecommerce") {
+      router.push("/?name=ecommerce");
+    } else if (name === "security") {
+      router.push("/?name=security");
+    } else if (name === "marketing") {
+      router.push("/?name=marketing");
+    } else if (name === "howto") {
+      router.push("/?name=howto");
+    }
+  }
   return (
     <div>
       <div className="main">
@@ -65,38 +88,59 @@ export default function Index(props: any) {
         `}</style>
         <div className="flex flex-nowrap">
           <div className="shrink w-64 ">
-            <div className="main-button-each pt-3 pb-3 text-center">
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("ournews")}
+            >
               Our News
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("domains")}
+            >
               Domains
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("wordpress")}
+            >
               WordPress
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("ecommerce")}
+            >
               eCommerce
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("security")}
+            >
               Security
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
-              Our News
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("marketing")}
+            >
+              Marketing
             </div>
           </div>
           <div className="shrink w-64">
-            <div className="main-button-each pt-3 pb-3 text-center">
-              Our News
+            <div
+              className="main-button-each pt-3 pb-3 text-center"
+              onClick={() => text("howto")}
+            >
+              How To
             </div>
           </div>
         </div>
@@ -109,16 +153,22 @@ export default function Index(props: any) {
   );
 }
 
-export async function getServerSideProps() {
-  //const data = await api.get(process.env.customKey);
-  const data = [
+export async function getServerSideProps(context: any) {
+  var data = await api.get(
+    process.env.customKey + "?value=" + context.query.name
+  );
+
+  console.log("getServerSideProps" + context.query.name);
+
+  /* const data = [
     "Papaki had a dynamic presence at the eCommerce & Digital Marketing Expo 2023 ",
     "Papaki had a dynamic presence at the eCommerce & Digital Marketing Expo 2023 ",
     "Papaki had a dynamic presence at the eCommerce & Digital Marketing Expo 2023 ",
     "Papaki had a dynamic presence at the eCommerce & Digital Marketing Expo 2023 ",
-  ];
+    "Papaki had a dynamic presence at the eCommerce & Digital Marketing Expo 2023 ",
+  ];*/
   console.log("data caleess -------->" + data);
   return {
-    props: { allDatas: data },
+    props: { allDatas: data.projects },
   };
 }

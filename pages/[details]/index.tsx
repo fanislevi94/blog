@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
 import Detail from "../components/layouts/details";
 export default function Details(props: any) {
   const router = useRouter();
@@ -21,8 +21,7 @@ export default function Details(props: any) {
         `}</style>
         <div className="main-bar">
           <div className="text-center pt-20 detail-bar pl-20 pr-20">
-            Papaki had a dynamic presence at the eCommerce & Digital Marketing
-            Expo 2023
+           {router.query.keyword}
           </div>
         </div>
       </div>

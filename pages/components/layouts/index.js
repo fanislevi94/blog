@@ -40,7 +40,7 @@ export default function Index(props) {
           color: blue;
         }
       `}</style>
-      <div className="flex flex-wrap flex justify-center items-center gap-20 pt-20">
+      <div className="flex flex-wrap flex justify-center items-center gap-20 pt-20 ">
         {items.map((data) => (
           <div className="box">
             <div className="image">
@@ -51,17 +51,14 @@ export default function Index(props) {
                 alt="Picture of the author"
               />
             </div>
-            <div className="over-image">Our news</div>
+            <div className="over-image">{data.category}</div>
             <div className="area-field pt-5 pl-5">12 October 2023</div>
             <div className="area-field-header pl-5 my-link">
-              <Link href="/details">
-                Papaki had a dynamic presence at the eCommerce & Digital
-                Marketing Expo 2023
-              </Link>
+            
+              <Link href={{ pathname: '/details', query: { keyword: data.title } }}>{data.title}</Link>
             </div>
             <div className="area-field-detail pl-5 pt-2">
-              Papaki, supporting the eCommerce and business community, was
-              present this year as a sponsor and exhibitor at the eCommerce &...
+            {data.description}
             </div>
           </div>
         ))}
